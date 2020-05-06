@@ -5,5 +5,8 @@ Repository for Gabriella Norman's master thesis project:
 
 # Predictions 
 
-## Left breast
-![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_baseline.gif) ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_baseline.gif)
+## Breasts
+
+Ground truth               |  Baseline models          | Class-agnostic model 
+:-------------------------:|:-------------------------:|:----------------------:
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_true.gif)  |  ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_baseline.gif) | ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_classagnostic.gif)
