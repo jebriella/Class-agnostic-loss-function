@@ -36,3 +36,11 @@ Repository for Gabriella Norman's master thesis project:
 ### Misslabeled pixels
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/heart_error.gif)
+
+## Spinal cord
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/spinalcord.gif)
+
+### Misslabeled pixels
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/spinalcord_error.gif)
