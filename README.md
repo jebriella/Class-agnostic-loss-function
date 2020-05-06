@@ -7,6 +7,8 @@ Repository for Gabriella Norman's master thesis project:
 
 ## Breasts
 
-Ground truth               |  Baseline models          | Class-agnostic model 
-:-------------------------:|:-------------------------:|:----------------------:
-![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_true.gif)  |  ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_baseline.gif) | ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_classagnostic.gif)
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast.gif)
+
+### Misslabeled pixels
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_error.gif)
