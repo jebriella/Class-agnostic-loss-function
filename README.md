@@ -12,3 +12,11 @@ Repository for Gabriella Norman's master thesis project:
 ### Misslabeled pixels
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_error.gif)
+
+## Breasts including lymph nodes
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_ax.gif)
+
+### Misslabeled pixels
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_ax_error.gif)
