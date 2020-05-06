@@ -27,6 +27,8 @@ Repository for Gabriella Norman's master thesis project:
 
 ### Misslabeled pixels
 
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/lungs_error.gif)
+
 ## Heart
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/heart.gif)
