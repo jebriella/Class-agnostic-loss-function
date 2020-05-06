@@ -8,3 +8,4 @@ Test information
 # Predictions 
 
 ## Left breast
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_baseline.gif)
