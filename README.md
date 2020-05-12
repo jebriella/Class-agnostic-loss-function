@@ -9,7 +9,7 @@ Repository for Gabriella Norman's master thesis project:
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast.gif)
 
-### Misslabeled pixels
+### Mislabeled pixels
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_error.gif)
 
@@ -17,7 +17,7 @@ Repository for Gabriella Norman's master thesis project:
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_ax.gif)
 
-### Misslabeled pixels
+### Mislabeled pixels
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/breast_ax_error.gif)
 
@@ -25,7 +25,7 @@ Repository for Gabriella Norman's master thesis project:
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/lungs.gif)
 
-### Misslabeled pixels
+### Mislabeled pixels
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/lungs_error.gif)
 
@@ -33,6 +33,14 @@ Repository for Gabriella Norman's master thesis project:
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/heart.gif)
 
-### Misslabeled pixels
+### Mislabeled pixels
 
 ![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/heart_error.gif)
+
+## Spinal cord
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/spinalcord.gif)
+
+### Mislabeled pixels
+
+![](https://github.com/jebriella/Class-agnostic-loss-function/blob/master/Predictions/spinalcord_error.gif)
