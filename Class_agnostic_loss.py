@@ -1,58 +1,52 @@
-from U_Net_2D import model_unet
+import tensorflow.keras.backend as K
+from tensorflow.keras.losses import binary_crossentropy
+import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
-from tensorflow.keras.optimizers import Adam
-from metrics import dice_coef, loss_dl_ce, dice_class1, dice_class2, dice_class3, b_cross
-from tensorflow.python.client import device_lib
-from tensorflow.keras.utils import multi_gpu_model
-from DataGenerator import DataGenerator
-import math
-import os
 
-batch_s = 8
-n_train = 35296 #35321
-n_val = 8800 #8831
+# Class-agnostic loss function
+def class_agnostic_loss(y_true, y_pred):
+    l1, p1 = m_loss_class(y_true[:,:,:,0], y_pred[:,:,:,0])
+    l2, p2 = m_loss_class(y_true[:,:,:,1], y_pred[:,:,:,1])
+    l3, p3 = m_loss_class(y_true[:,:,:,2], y_pred[:,:,:,2])
+    l4, p4 = m_loss_class(y_true[:,:,:,3], y_pred[:,:,:,3])
+    l5, p5 = m_loss_class(y_true[:,:,:,4], y_pred[:,:,:,4])
+    l6, p6 = m_loss_class(y_true[:,:,:,5], y_pred[:,:,:,5])
+    l7, p7 = m_loss_class(y_true[:,:,:,6], y_pred[:,:,:,6])
+    l8, p8 = m_loss_class(y_true[:,:,:,7], y_pred[:,:,:,7])
 
-train_img_path = 'left+ax/images'
-train_mask_path = 'left+ax/masks'
+    loss = (l1+l2+l3+l4+l5+l6+l7+*l8)/(tf.cast((p1+p2+p3+p4+p5+p6+p7+p8), dtype=tf.float32))
+    
+    return loss
 
-val_img_path = 'left+ax/val/images'
-val_mask_path = 'left+ax/val/masks'
+def m_loss_class(y_true, y_pred):
+    s = K.shape(y_true)[0]
+    # Weight
+    w = y_true[:,0,0]
+    # Set weight to zero
+    z = K.zeros_like(y_true[:,:,0:1])
+    y_part = y_true[:,:,1:256]
+    y_true = K.concatenate([z, y_part])
+    # How many times the mask accures
+    a = K.sum(w)
+    # Chech if masks are present at all
+    p = K.switch(K.equal(a,0), 0, 1)
+    # Calculating loss
+    y_true_f = K.reshape(y_true, (s, 65536))
+    y_pred_f = K.reshape(y_pred, (s, 65536))
+    l = (0.5*(1.-dice_part(y_true_f, y_pred_f))) + (0.5*bc_part(y_true_f, y_pred_f))
+    # Set loss to zero if mask does not excist
+    l = w*l
+    # Sum and div by number of present masks
+    l = K.sum(l)/(a + K.epsilon())
+    return l, p
 
-train_list = os.listdir(train_img_path)
-val_list = os.listdir(val_img_path)
+def dice_part(y_true, y_pred):
+    intersection = K.sum(y_true * y_pred, axis=1)
+    values = (2. * intersection + K.epsilon()) / (K.sum(y_true, axis=1) + K.sum(y_pred,axis=1) + K.epsilon())
+    return values
 
-train_gen = DataGenerator(train_img_path, train_mask_path, train_list, batch_size = batch_s)
-val_gen = DataGenerator(val_img_path, val_mask_path, val_list, batch_size = batch_s)
+def bc_part(y_true, y_pred):
+    cross = K.binary_crossentropy(y_true, y_pred)
+    m = K.mean(cross, axis=1)
+    return m
 
-model = model_unet(img_size = [256,256], base = 128, nr_classes = 3, dept = 4, batch_norm = True)#, s_dropout = 0.4)
-
-n_epochs = 18
-
-#model = multi_gpu_model(model, gpus=2)
-
-model.compile(loss=loss_dl_ce, optimizer = Adam(lr=0.001), metrics=[dice_coef, dice_class1, dice_class2, dice_class3])#, precision, recall])
-
-History = model.fit_generator(train_gen, 
-                              epochs = n_epochs, 
-                              steps_per_epoch = n_train/batch_s,
-                              validation_data = val_gen,
-                              validation_steps = n_val/batch_s,
-                              max_queue_size = 2)
-                              #workers = 10,
-                              #use_multiprocessing = True)
-
-#History = model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data = (X_val, y_val))
-
-plt.figure(figsize=(4, 4))
-plt.title("Learning curve")
-plt.plot(History.history["loss"], label="loss")
-plt.plot(History.history["val_loss"], label="val_loss")
-plt.plot(np.argmin(History.history["val_loss"]),
-         np.min(History.history["val_loss"]),
-         marker="x", color="r", label="best model")
-
-plt.xlabel("Epochs")
-plt.ylabel("Loss Value")
-plt.legend();
-plt.show()
