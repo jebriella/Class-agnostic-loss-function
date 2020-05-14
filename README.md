@@ -4,15 +4,19 @@ Repository for Gabriella Norman's master thesis project:
 **A segmentation network with a class-agnostic loss function to train on incomplete data**
 
 In repository:
-- Predictions: Gif:s of ground truths and predictions from both baseline models and the class-agnostic model
+- Sorting
+  - data_loader: A function that loads CT-image and breast mask of all patients. Returns one list with patient ID:s, one list with CT images and one list breast masks
+  - feature_setup: A function that extracts the 15 features used for sorting from the given image and mask. 
+  - my_vote: 
+  - main_sort: 
 - Preprocessing
   - preprocessing_class-agnostic_data: Reads NIFTI files (images and masks), performs preprocessing and saves slices and corresponding mask-slices as numpy files
   - preprocessing_one_class_data: Reads NIFTI files (images and masks), performs preprocessing and saves slices and corresponding mask-slice as numpy files. This is an example for the heart mask.
-- Sorting
-  - data_loader
-  - feature_setup
-  - my_vote
-  - main_sort
+- Deep learning implementations
+  - U_Net_2D: An implementation of the U-Net for 2D data, with options for batch normalization and spatial dropout
+  - metric_loss: Metrics for dice coefficient. Dice loss, cross-entropy and a combined loss function of dice loss and cross-entropy
+  - Class_agnostic_loss: The class-agnostic loss function for an eight-mask model
+- Predictions: Gif:s of ground truths and predictions from both baseline models and the class-agnostic model
 
 # Predictions 
 
