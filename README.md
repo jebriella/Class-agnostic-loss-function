@@ -7,11 +7,11 @@ In repository:
 - Sorting
   - **data_loader**: A function that loads CT-image and breast mask of all patients. Returns one list with patient ID:s, one list with CT images and one list breast masks
   - **feature_setup**: A function that extracts the 15 features used for sorting from the given image and mask. 
-  - **my_vote**: 
-  - **main_sort**: 
+  - **my_vote**: A function that loads 5 classification models and performs a version of majority voting. Meaning if all 5 models give the same label, then it is sorted, and if they do not, it is marked to be sorted manually.
+  - **main_sort**: The main function calling the functions above.
 - Preprocessing
   - **preprocessing_class-agnostic_data**: Reads NIFTI files (images and masks), performs preprocessing and saves slices and corresponding mask-slices as numpy files
-  - **preprocessing_one_class_data**: Reads NIFTI files (images and masks), performs preprocessing and saves slices and corresponding mask-slice as numpy files. This is an example for the heart mask.
+  - **preprocessing_one_class_data**: Reads NIFTI files (images and masks), performs preprocessing and saves slices and corresponding mask-slice as numpy files. This is an example of the heart mask.
 - Deep learning implementations
   - **U_Net_2D**: An implementation of the U-Net for 2D data, with options for batch normalization and spatial dropout
   - **metric_loss**: Metrics for dice coefficient. Dice loss, cross-entropy and a combined loss function of dice loss and cross-entropy
